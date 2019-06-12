@@ -1,17 +1,20 @@
 import React from "react";
-import Navbar from './layout/Navbar/Navbar';
+import Navbar from '../partials/Navbar/Navbar';
 import { ContentWrapper, DrawerWrapper } from "./App.style";
-import {GlobalStyles} from './global/styles';
-
+import { GlobalStyles } from '../global/styles';
+import booksApi from "../api";
+import BookOverview from './BookOverview/BookOverview';
 
 export default class App extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      isNavOpened: false
-    }
+      isNavOpened: false,
+      books: [],
+      loading: true,
 
+    }
   }
 
   handleNavToggle = (isNavOpened) => {
@@ -20,10 +23,28 @@ export default class App extends React.Component {
     });
   };
 
+  //Wird direkt nach dem erstellen der Komponente ausgeführt
+  componentDidMount() {
+    booksApi()
+      .then(books => {
+        this.setState({
+          loading: false,
+          books
+        })
+
+      })
+      .catch(err => console.error(err))
+  }
+
+
+  //Wird ausgeführt wenn die Komponente "zerstört" wird
+  componentWillUnmount() {
+  }
+
 
   render() {
 
-    const { isNavOpened } = this.state;
+    const { isNavOpened, books, loading } = this.state;
 
 
     return <div>
@@ -39,7 +60,11 @@ export default class App extends React.Component {
         Test
       </DrawerWrapper>
       <ContentWrapper isNavOpened={isNavOpened}>
-        Content!
+
+        {
+          !loading ? <BookOverview books={books}/> : <p>Loading...</p>
+        }
+
 
       </ContentWrapper>
 
