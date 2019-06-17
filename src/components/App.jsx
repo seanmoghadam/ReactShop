@@ -45,13 +45,16 @@ export default class App extends React.Component {
 
   addItemToCart = (cartItem) => {
     //fügt ein Buch dem Cart hinzu
-    console.log(cartItem);
+    this.setState({
+      cartItems: [...this.state.cartItems, cartItem]
+    });
+
   };
 
 
   render() {
 
-    const { isNavOpened, books, loading } = this.state;
+    const { isNavOpened, books, loading, cartItems } = this.state;
 
 
     return <div>
@@ -67,6 +70,7 @@ export default class App extends React.Component {
         Test
       </DrawerWrapper>
       <ContentWrapper isNavOpened={isNavOpened}>
+        {/*<p>CartItem Count: {cartItems.length}</p>*/}
 
         {
           !loading ? <BookOverview books={books}
