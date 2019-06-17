@@ -1,7 +1,7 @@
 import React from "react";
 import AppBar from "@material-ui/core/AppBar";
 import styled from "styled-components";
-import { DrawerWidth } from '../../global/styles';
+import { btnReset, DrawerWidth } from '../../global/styles';
 
 //Solution for prop warning of MUI
 export const NavBarWrapper = styled(({isNavOpened, ...props}) => <AppBar {...props}/>)`
@@ -21,19 +21,5 @@ padding: 5px 10px;
 `;
 
 export const CartButton = styled.button`
-border: none;
-margin: 0;
-padding: 0;
-background: transparent;
-justify-self: end;
-
-&:hover {
-    cursor: pointer;
-}
-
-&:focus{
-outline: none;
-}
-
-
+${btnReset}
 `;

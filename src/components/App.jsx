@@ -13,15 +13,10 @@ export default class App extends React.Component {
       isNavOpened: false,
       books: [],
       loading: true,
-
+      cartItems: []
     }
   }
 
-  handleNavToggle = (isNavOpened) => {
-    this.setState({
-      isNavOpened
-    });
-  };
 
   //Wird direkt nach dem erstellen der Komponente ausgeführt
   componentDidMount() {
@@ -36,10 +31,22 @@ export default class App extends React.Component {
       .catch(err => console.error(err))
   }
 
-
   //Wird ausgeführt wenn die Komponente "zerstört" wird
   componentWillUnmount() {
   }
+
+
+  handleNavToggle = (isNavOpened) => {
+    this.setState({
+      isNavOpened
+    });
+  };
+
+
+  addItemToCart = (cartItem) => {
+    //fügt ein Buch dem Cart hinzu
+    console.log(cartItem);
+  };
 
 
   render() {
@@ -62,7 +69,9 @@ export default class App extends React.Component {
       <ContentWrapper isNavOpened={isNavOpened}>
 
         {
-          !loading ? <BookOverview books={books}/> : <p>Loading...</p>
+          !loading ? <BookOverview books={books}
+                                   addItemToCart={this.addItemToCart}
+          /> : <p>Loading...</p>
         }
 
 

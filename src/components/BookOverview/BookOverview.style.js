@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { btnReset } from '../../global/styles';
 
 export const BookOverviewHeadline = styled.h1`
 
@@ -35,4 +36,9 @@ font-size: 11px;
 
 
 `;
+
+export const CartBtn = styled.button`
+${btnReset}
+`;
+
 
