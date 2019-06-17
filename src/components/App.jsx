@@ -4,6 +4,7 @@ import { ContentWrapper, DrawerWrapper } from "./App.style";
 import { GlobalStyles } from '../global/styles';
 import booksApi from "../api";
 import BookOverview from './BookOverview/BookOverview';
+import Cart from './Cart/Cart';
 
 export default class App extends React.Component {
 
@@ -65,9 +66,10 @@ export default class App extends React.Component {
       <DrawerWrapper
         variant="persistent"
         anchor="right"
-        open={isNavOpened}
-      >
-        Test
+        open={isNavOpened}>
+
+        <Cart cartItems={cartItems}/>
+
       </DrawerWrapper>
       <ContentWrapper isNavOpened={isNavOpened}>
         {/*<p>CartItem Count: {cartItems.length}</p>*/}
