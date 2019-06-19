@@ -5,6 +5,7 @@ import {
   BookOverviewListItem,
   CartBtn
 } from './BookOverview.style';
+import { Link } from "react-router-dom";
 import { AppContext } from '../App';
 
 const addIcon = <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -17,6 +18,9 @@ const BookOverview = () => {
   return <AppContext.Consumer>
     {
       context => {
+        if (context.loading) {
+          return "Loading..."
+        }
         return <React.Fragment>
           <BookOverviewHeadline>Bücher!</BookOverviewHeadline>
           <BookOverviewList>
@@ -24,13 +28,17 @@ const BookOverview = () => {
               (
                 <BookOverviewListItem key={index}>
                   <p>{book.title}</p>
-                  <img src={book.image} alt={book.title}/>
+                  <Link to={"book/" + book.isbn}>
+                    <img src={book.image} alt={book.title}/>
+                  </Link>
                   <CartBtn onClick={() => context.addItemToCart(book)}>{addIcon}</CartBtn>
                 </BookOverviewListItem>
               )
             )}
           </BookOverviewList>
         </React.Fragment>
+
+
       }
     }
 

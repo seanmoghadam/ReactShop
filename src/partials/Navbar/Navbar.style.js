@@ -16,8 +16,11 @@ export const NavBarWrapper = styled(({isNavOpened, ...props}) => <AppBar {...pro
 
 export const NavBarInnerWrapper = styled.nav`
 display: flex;
-justify-content: flex-end;
+justify-content: space-between;
 padding: 5px 10px;
+a {
+color: black
+}
 `;
 
 export const CartButton = styled.button`

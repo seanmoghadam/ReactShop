@@ -2,10 +2,11 @@ import React from "react";
 import Navbar from '../partials/Navbar/Navbar';
 import { ContentWrapper, DrawerWrapper } from "./App.style";
 import { GlobalStyles } from '../global/styles';
-import booksApi from "../api";
-import BookOverview from './BookOverview/BookOverview';
+import {allBooks} from "../api";
 import Cart from './Cart/Cart';
+import Routes from "../Routes";
 export const AppContext = React.createContext({});
+
 
 export default class App extends React.Component {
 
@@ -22,7 +23,7 @@ export default class App extends React.Component {
 
   //Wird direkt nach dem erstellen der Komponente ausgeführt
   componentDidMount() {
-    booksApi()
+    allBooks()
       .then(books => {
         this.setState({
           loading: false,
@@ -77,7 +78,8 @@ export default class App extends React.Component {
         cartItems,
         addItemToCart: this.addItemToCart,
         deleteItemFromCart: this.deleteItemFromCart,
-        handleNavToggle: this.handleNavToggle
+        handleNavToggle: this.handleNavToggle,
+        loading
       }}>
       <GlobalStyles/>
       <Navbar/>
@@ -92,10 +94,7 @@ export default class App extends React.Component {
       </DrawerWrapper>
       <ContentWrapper isNavOpened={isNavOpened}>
 
-        {
-          !loading ? <BookOverview/> : <p>Loading...</p>
-        }
-
+        {Routes}
 
       </ContentWrapper>
 
