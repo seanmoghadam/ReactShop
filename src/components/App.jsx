@@ -5,6 +5,7 @@ import { GlobalStyles } from '../global/styles';
 import booksApi from "../api";
 import BookOverview from './BookOverview/BookOverview';
 import Cart from './Cart/Cart';
+export const AppContext = React.createContext({});
 
 export default class App extends React.Component {
 
@@ -52,38 +53,53 @@ export default class App extends React.Component {
 
   };
 
+  deleteItemFromCart = (index) => {
+    let copiedCart = [...this.state.cartItems];
+    copiedCart.splice(index, 1);
+    this.setState({
+      cartItems: copiedCart
+    });
+
+  };
+
 
   render() {
 
     const { isNavOpened, books, loading, cartItems } = this.state;
 
 
+
+
     return <div>
+      <AppContext.Provider value={{
+        isNavOpened,
+        books,
+        cartItems,
+        addItemToCart: this.addItemToCart,
+        deleteItemFromCart: this.deleteItemFromCart,
+        handleNavToggle: this.handleNavToggle
+      }}>
       <GlobalStyles/>
-      <Navbar isNavOpened={isNavOpened}
-              handleNavToggle={this.handleNavToggle}/>
+      <Navbar/>
 
       <DrawerWrapper
         variant="persistent"
         anchor="right"
         open={isNavOpened}>
 
-        <Cart cartItems={cartItems}/>
+        <Cart/>
 
       </DrawerWrapper>
       <ContentWrapper isNavOpened={isNavOpened}>
-        {/*<p>CartItem Count: {cartItems.length}</p>*/}
 
         {
-          !loading ? <BookOverview books={books}
-                                   addItemToCart={this.addItemToCart}
-          /> : <p>Loading...</p>
+          !loading ? <BookOverview/> : <p>Loading...</p>
         }
 
 
       </ContentWrapper>
 
-
+      </AppContext.Provider>
     </div>
 
   }
