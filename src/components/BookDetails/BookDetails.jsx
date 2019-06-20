@@ -1,15 +1,26 @@
-import React, {useEffect} from "react";
+import React, { useEffect, useState } from "react";
 import { getBookById } from '../../api';
 
 const BookDetails = (props) => {
   console.log(props);
+  const [book, setBook] = useState({});
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    console.log(props);
-    getBookById(props.match.params.id).then(data => console.log(data))
+
+    getBookById(props.match.params.id)
+      .then(book => {
+        setBook(book);
+        setLoading(false);
+      })
+      .catch(err => console.error(err))
+
   }, []);
 
-  return "Book Details"
+  if (loading) return "Loading...";
+  return <div>
+    {book.title}
+  </div>;
 };
 
 export default BookDetails;
