@@ -22,7 +22,7 @@ const BookOverview = () => {
           return "Loading..."
         }
         return <React.Fragment>
-          <BookOverviewHeadline>Bücher!</BookOverviewHeadline>
+          <BookOverviewHeadline>Bestseller 2019!</BookOverviewHeadline>
           <BookOverviewList>
             {context.books.map((book, index) =>
               (
