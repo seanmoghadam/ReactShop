@@ -1,12 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-
+import { AddSVG } from "../Icons/Icons.jsx";
 import "./BookListing.scss"
 import {AppContext} from "../../App";
-
-const addSVG = <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-    <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
-</svg>;
+import { Link } from 'react-router-dom';
 
 const BookListing = () => {
 
@@ -22,9 +19,9 @@ const BookListing = () => {
                             context.books.map((book, index) =>
                                 <li className="book-overview-list-item" key={book.isbn + index}>
                                     <p>{book.title}</p>
-                                    <a href={"/details/" + book.isbn}>
+                                    <Link to={"/details/" + book.isbn}>
                                         <img src={book.image} alt={book.title}/>
-                                    </a>
+                                    </Link>
                                     <button
                                         className="cart-button"
                                         onClick={() => {
@@ -33,7 +30,7 @@ const BookListing = () => {
                                                 context.toggleDrawer();
                                             }
                                         }}>
-                                        {addSVG}
+                                        <AddSVG/>
                                     </button>
                                 </li>
                             )

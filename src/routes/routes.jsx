@@ -4,8 +4,11 @@ import BookListing from "../App/Components/BookListing/BookListing";
 import Error from "../App/Components/Error/Error";
 
 export default <Switch>
-    <Route path="/" render={(props) => {
+    <Route path="/" exact render={(props) => {
         return <BookListing {...props}/>
+    }}/>}/>
+    <Route path="/details/:id" exact render={(props) => {
+        return "gesg"
     }}/>}/>
     <Route path="*" render={(props) => <Error {...props}/>}/>
 </Switch>
