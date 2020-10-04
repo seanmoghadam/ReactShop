@@ -1,0 +1,40 @@
+@import "../../../styles/mixins.scss";
+@import "../../../styles/constants.scss";
+
+.nav-bar-wrapper {
+  position: fixed;
+  z-index: 100;
+  display: flex;
+  left: 0;
+  top: 0;
+  background-color: white;
+  height: $navigationHeight;
+  align-items: center;
+  transition: width 225ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+  box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.35);
+
+  &.drawer-closed {
+    width: 100%;
+  }
+
+  &.drawer-opened {
+    width: calc(100% - #{$drawerWidth});
+  }
+
+}
+
+.nav-bar {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 5px 10px;
+
+  a {
+    padding: 5px;
+    @include reset-link
+  }
+}
+
+.cart-button {
+  @include reset-button;
+}

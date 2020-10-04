@@ -1,0 +1,36 @@
+@mixin reset-button {
+    border: none;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    justify-self: end;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &:focus{
+        outline-color: lightgray;
+        outline-width: 1px;
+    }
+}
+
+@mixin reset-link {
+    color: black;
+    text-decoration: none;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &:focus{
+        outline-color: lightgray;
+        outline-width: 2px;
+    }
+}
+
+@mixin list-reset {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
